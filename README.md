@@ -1,6 +1,6 @@
 # Change Management in Infrastructure as a Code (IaC)
 
-This repo is used in the [Change Management in Infrastructure as a Code (IaC)](https://dev.to/kkazala/version-management-in-infrastructure-as-a-code-iac-1joe) series.
+This repo is used in the [Change Management in Infrastructure as a Code (IaC)](https://dev.to/kkazala/change-management-in-infrastructure-as-a-code-iac-32kn) series.
 
 It's the initial state of the project, before Rush is configured. 
 it provisions the following services:
