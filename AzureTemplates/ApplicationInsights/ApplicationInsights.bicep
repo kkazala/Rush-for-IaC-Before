@@ -29,3 +29,5 @@ resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
     IngestionMode: 'LogAnalytics'
   }
 }
+
+output applicationInsightsId string = applicationInsights.id

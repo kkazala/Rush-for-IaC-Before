@@ -111,15 +111,11 @@ jobs:
               --tags CostCenter='$(getConfig.costCenter)' Environment='$(getConfig.environment)' Project='$(getConfig.project)}'
           }
 
-
           $templSpecs =  (az ts list --resource-group $rgTemplateSpec | ConvertFrom-Json)  | where {$_.name -eq $templateSpecName }
           if($templSpecs -ne $null){
 
             Write-Host "Template Specs exists. Updating..."
-
-            Write-Host "Template Specs exists. Updating..."
         
-            $templateSpecId= az ts show -g $rgTemplateSpec --name $templateSpecName --query id
             $templateSpecId= az ts show -g $rgTemplateSpec --name $templateSpecName --query id
             Write-Host "##vso[task.setvariable variable=templateSpecId]$templateSpecId"
             Write-host $templateSpecId
@@ -128,7 +124,6 @@ jobs:
             $result= az ts update `
                 --template-spec $templateSpecId `
                 --template-file '$(templatesPath)/deploy.bicep' `
-                --tags CostCenter='$(getConfig.costCenter)' Environment='$(getConfig.environment)' Project='$(getConfig.project)}'  `
                 --tags CostCenter='$(getConfig.costCenter)' Environment='$(getConfig.environment)' Project='$(getConfig.project)}'  `
                 --yes 
           }
@@ -139,10 +134,8 @@ jobs:
                 --resource-group $rgTemplateSpec  `
                 --template-file '$(templatesPath)/deploy.bicep'  `
                 --tags CostCenter='$(getConfig.costCenter)' Environment='$(getConfig.environment)' Project='$(getConfig.project)}' `
-                --tags CostCenter='$(getConfig.costCenter)' Environment='$(getConfig.environment)' Project='$(getConfig.project)}' `
                 --yes
 
-            $templateSpecId= az ts show --resource-group $rgTemplateSpec --name $templateSpecName --query id
             $templateSpecId= az ts show --resource-group $rgTemplateSpec --name $templateSpecName --query id
             Write-Host "##vso[task.setvariable variable=templateSpecId]$templateSpecId"
           }
@@ -202,6 +195,7 @@ jobs:
             Write-Host  "##vso[task.setvariable variable=resultsFile]$resultsFile" # use this file for Pester tests for example
           }
       displayName: Get results of Template Spec deployment
+
 
 
 
